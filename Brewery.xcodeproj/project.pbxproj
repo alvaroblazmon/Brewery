@@ -195,6 +195,29 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		83255DFE2177B7260035A977 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				83255DFF2177B7320035A977 /* StyleList */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		83255DFF2177B7320035A977 /* StyleList */ = {
+			isa = PBXGroup;
+			children = (
+				83255E002177B7400035A977 /* Model */,
+			);
+			path = StyleList;
+			sourceTree = "<group>";
+		};
+		83255E002177B7400035A977 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8384EF9621762B2E003D701D = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +255,7 @@
 		8384EFB621762B2F003D701D /* BreweryTests */ = {
 			isa = PBXGroup;
 			children = (
+				83255DFE2177B7260035A977 /* ViewController */,
 				8384EFB721762B2F003D701D /* BreweryTests.swift */,
 				8384EFB921762B2F003D701D /* Info.plist */,
 			);

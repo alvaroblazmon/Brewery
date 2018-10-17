@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SwiftyJSON
 @testable import Brewery
 
 class BreweryTests: XCTestCase {
@@ -15,20 +16,25 @@ class BreweryTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testJSON() {
+        let string = "{\"id\": \"1\",\"name\": \"Beer\",\"description\": \"descripcion\"}"
+        let json = JSON(parseJSON: string)
+        let style = Style(json: json)
+        
+        XCTAssertEqual(style.id, "1")
+        XCTAssertEqual(style.name, "Beer")
+        XCTAssertEqual(style.description, "descripcion")
+        
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testBadJSON() {
+        let string = "{\"idddd\": \"1\",\"nameeee\": \"Beer\",\"descriptiooon\": \"descripcion\"}"
+        let json = JSON(parseJSON: string)
+        let style = Style(json: json)
+        
+        XCTAssertEqual(style.id, "")
+        XCTAssertEqual(style.name, "")
+        XCTAssertEqual(style.description, "")
     }
 
 }
