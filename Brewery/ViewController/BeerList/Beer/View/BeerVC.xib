@@ -15,6 +15,7 @@
                 <outlet property="abvLabel" destination="OoK-iq-Nl3" id="wrc-As-dAg"/>
                 <outlet property="blurView" destination="XIa-fH-hk7" id="Z9I-aD-6L7"/>
                 <outlet property="descriptionLabel" destination="wYf-Lr-Iww" id="ar8-nh-FF0"/>
+                <outlet property="favoriteButton" destination="xrP-mQ-uwo" id="y9r-kk-pwV"/>
                 <outlet property="heightPhotoIV" destination="auo-xS-8WY" id="ra4-3m-FC5"/>
                 <outlet property="ibuLabel" destination="H1M-Tg-cwW" id="jOd-0e-30z"/>
                 <outlet property="nameLabel" destination="sRn-6A-bAG" id="GwG-2z-V4l"/>
@@ -189,10 +190,23 @@
                                 <action selector="exitTap:" destination="-1" eventType="touchUpInside" id="rP2-xr-JST"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrP-mQ-uwo">
+                            <rect key="frame" x="260" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="xrP-mQ-uwo" secondAttribute="height" multiplier="1:1" id="O5P-12-PRg"/>
+                            </constraints>
+                            <state key="normal" image="fav-off"/>
+                            <connections>
+                                <action selector="favoriteTap:" destination="-1" eventType="touchUpInside" id="2GE-ix-k70"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="8yn-DD-MVy" firstAttribute="centerY" secondItem="L7V-fO-ru6" secondAttribute="centerY" id="2xg-Qm-neG"/>
+                        <constraint firstAttribute="trailing" secondItem="xrP-mQ-uwo" secondAttribute="trailing" constant="16" id="Qqn-t4-ij2"/>
                         <constraint firstAttribute="height" constant="44" id="bcZ-oj-CYj"/>
+                        <constraint firstItem="xrP-mQ-uwo" firstAttribute="centerY" secondItem="L7V-fO-ru6" secondAttribute="centerY" id="go2-PN-KMt"/>
+                        <constraint firstItem="xrP-mQ-uwo" firstAttribute="height" secondItem="L7V-fO-ru6" secondAttribute="height" id="pue-RC-eIa"/>
                         <constraint firstItem="8yn-DD-MVy" firstAttribute="leading" secondItem="L7V-fO-ru6" secondAttribute="leading" constant="16" id="qvo-WK-bOf"/>
                         <constraint firstItem="8yn-DD-MVy" firstAttribute="height" secondItem="L7V-fO-ru6" secondAttribute="height" id="xsx-f0-NG8"/>
                     </constraints>
@@ -221,6 +235,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="fav-off" width="30" height="30"/>
         <image name="outline_clear_black_36pt" width="36" height="36"/>
     </resources>
 </document>

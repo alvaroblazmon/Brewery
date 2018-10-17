@@ -87,7 +87,7 @@ extension BeerListVC: ViewModelDelegate {
     private func showAlertNotResult() {
         let alertController = UIAlertController(title: "Alert" , message: "Error connection", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Accept", style: .default) { (action:UIAlertAction) in
-            self.navigationController?.popViewController(animated: true)
+            self.viewModel.reloadData()
         }
         alertController.addAction(action1)
         

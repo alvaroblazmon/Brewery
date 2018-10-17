@@ -21,6 +21,7 @@ class BeerVC: UIViewController {
     @IBOutlet weak var ibuLabel: UILabel!
     var initialImageHeight: CGFloat = 0
     @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +44,13 @@ class BeerVC: UIViewController {
         }
         
     }
-
-    @IBAction func photoTap(_ sender: Any) {
-        let viewController = BeerImageVC()
-        viewController.urlImage = URL(string: viewModel.image)
-        navigationController?.pushViewController(viewController, animated: true)
+    
+    private func prepareFavorite() {
+        if viewModel.isFavorite {
+            favoriteButton.setImage(UIImage(named: "fav-on"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "fav-off"), for: .normal)
+        }
     }
     
     @IBAction func blurViewTap(_ sender: Any) {
@@ -62,6 +65,10 @@ class BeerVC: UIViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func favoriteTap(_ sender: Any) {
+        viewModel.changeFavorite()
+        prepareFavorite()
+    }
 }
 
 extension BeerVC: UIScrollViewDelegate {

@@ -8,6 +8,7 @@
 
 class BeerItemVM {
     
+    weak var parent: FavoritesDelegate?
     let beer: Beer
     
     var id: String {
@@ -49,6 +50,10 @@ class BeerItemVM {
     
     init (_ beer: Beer) {
         self.beer = beer
+    }
+    
+    func changeFavorite() {
+        parent?.changeFavorite(favorite: self)
     }
     
 }

@@ -36,9 +36,9 @@ class MainCoordinator: CoordinatorProtocol {
         
         for viewTab in ViewsInTab.allCases {
             let viewNVC = UINavigationController()
-            /*viewNVC.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.Padel.Purple]
-            viewNVC.navigationBar.tintColor = UIColor.Padel.Purple
-            viewNVC.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.Padel.Purple]*/
+            viewNVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Yellow")!]
+            viewNVC.navigationBar.tintColor = UIColor(named: "Yellow")
+            viewNVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Yellow")!]
             
             var coordinator: CoordinatorProtocol
             switch viewTab {

@@ -45,6 +45,7 @@ class BeerListVM: ListVM<BeerItemVM, BeerService>, PaginationViewModel, Favorite
                         self.data.append(contentsOf: data.arrayValue.map {
                             let beerItemVM = BeerItemVM(Beer(json: $0))
                             beerItemVM.isFavorite = self.favoritesStorage?.isFavorite(favorite: beerItemVM.id) ?? false
+                            beerItemVM.parent = self
                             return beerItemVM
                         })
                         self.totalPages = json["numberOfPages"]?.intValue ?? 0

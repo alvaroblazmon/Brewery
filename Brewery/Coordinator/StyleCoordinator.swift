@@ -42,7 +42,6 @@ class StyleCoordinator: CoordinatorProtocol {
                 navigationController.pushViewController(viewController, animated: true)
             case .goBeerDetails(let beerItemVM):
                 let childNavigationController = UINavigationController()
-                
                 let filterCoordinator = BeerCoordinator(navigationController: childNavigationController, beerItemVM: beerItemVM)
                 filterCoordinator.start()
                 navigationController.present(childNavigationController, animated: true, completion: nil)
