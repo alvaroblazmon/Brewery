@@ -24,4 +24,8 @@ class StyleItemVM {
         self.style = style
     }
     
+    func getFormData() -> [String: String] {
+        return ["styleId": id]
+    }
+    
 }

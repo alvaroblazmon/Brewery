@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum StyleTransition {
+    case goBeerList(styleItemVM: StyleItemVM)
+    case goBeerDetails(beerItemVM: BeerItemVM)
+}
+
 class StyleCoordinator: CoordinatorProtocol {
     
     typealias NavViewController = UINavigationController
@@ -26,5 +31,23 @@ class StyleCoordinator: CoordinatorProtocol {
     }
     
     func performTransition(transition: Any) {
+        if let trasition = transition as? StyleTransition {
+            switch trasition {
+            case .goBeerList(let styleItemVM):
+                let viewController = BeerListVC()
+                let viewModel = BeerListVM(apiService: MoyaProviderConnection<BeerService>(), viewDelegate: viewController, coordinator: self)
+                viewModel.styleItemVM = styleItemVM
+                viewModel.favoritesStorage = Storage.Favorites.init()
+                viewController.viewModel = viewModel
+                navigationController.pushViewController(viewController, animated: true)
+            case .goBeerDetails(let beerItemVM):
+                let childNavigationController = UINavigationController()
+                
+                let filterCoordinator = BeerCoordinator(navigationController: childNavigationController, beerItemVM: beerItemVM)
+                filterCoordinator.start()
+                navigationController.present(childNavigationController, animated: true, completion: nil)
+                
+            }
+        }
     }
 }

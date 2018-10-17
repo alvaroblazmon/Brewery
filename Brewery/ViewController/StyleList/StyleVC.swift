@@ -19,10 +19,14 @@ class StyleVC: UIViewController {
         super.viewDidLoad()
         prepareTableView()
         viewModel.reloadData()
+        title = "Beers Style"
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     /// Register the nibs cell of Filters in the tableView
-    func prepareTableView() {
+    private func prepareTableView() {
         let nib = UINib(nibName: StyleTVC.XibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: StyleTVC.ReuseIdentifier)
         tableView.tableFooterView = UIView()
@@ -57,7 +61,7 @@ extension StyleVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StyleTVC.ReuseIdentifier, for: indexPath) as? StyleTVC  else {
-            fatalError("The dequeued cell is not an instance of SearchProductTVC.")
+            fatalError("The dequeued cell is not an instance of StyleTVC.")
         }
         
         cell.itemVM = viewModel.itemAtIndex(indexPath)
@@ -83,6 +87,19 @@ extension StyleVC: ViewModelDelegate {
             tableView.reloadData()
         case .error:
             activityIndicator.stopAnimating()
+            showAlertNotResult()
+        case .changeItem(let index):
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         }
+    }
+    
+    private func showAlertNotResult() {
+        let alertController = UIAlertController(title: "Alert" , message: "Error connection", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Accept", style: .default) { (action:UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(action1)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

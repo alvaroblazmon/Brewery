@@ -28,6 +28,7 @@ struct Process: Equatable {
 enum ProcessViewState {
     case loading
     case loaded(Process)
+    case changeItem(index: Int)
     case error(ProcessError)
 }
 
