@@ -19,7 +19,6 @@ struct Style {
     let description: String
 }
 
-
 extension Style {
     init(json: JSON) {
         self.id = json[Key.id.rawValue].stringValue

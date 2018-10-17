@@ -50,8 +50,10 @@ UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let _ = viewModel.itemAtIndex(indexPath.row) else {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if viewModel.itemAtIndex(indexPath.row) == nil {
             return CGSize(width: 0, height: 0)
         }
         let width = (collectionView.frame.width / 3) - (BeerCVC.Margin * 1.5)
@@ -85,10 +87,8 @@ extension BeerListVC: ViewModelDelegate {
     }
     
     private func showAlertNotResult() {
-        let alertController = UIAlertController(title: "Alert" , message: "Error connection", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Accept", style: .default) { (action:UIAlertAction) in
-            self.viewModel.reloadData()
-        }
+        let alertController = UIAlertController(title: "Alert", message: "Error connection", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Accept", style: .default) { _ in self.viewModel.reloadData() }
         alertController.addAction(action1)
         
         self.present(alertController, animated: true, completion: nil)

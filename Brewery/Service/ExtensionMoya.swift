@@ -31,9 +31,7 @@ class MoyaProviderConnection<Target: TargetType>: MoyaProvider<Target> {
 }
 
 extension TargetType {
-    var commonParameters: Dictionary<String, String> {
-        get {
+    var commonParameters: [String: String] {
             return ["key": Constant.KEY]
-        }
     }
 }

@@ -42,7 +42,7 @@ extension BeerService: TargetType {
             return Data()
         }
     }
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return ["Content-type": "application/json"]
     }
 }

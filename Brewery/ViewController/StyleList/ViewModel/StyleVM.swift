@@ -12,7 +12,7 @@ import Moya
 class StyleVM: ListVM<StyleItemVM, StyleService>, DictionaryViewModel {
     
     var minElementToShowDictionary: Int = 15
-    var dictionaryItems: [Character : [StyleItemVM]] = [:]
+    var dictionaryItems: [Character: [StyleItemVM]] = [:]
     
     func reloadData() {
         guard let viewDelegate = self.viewDelegate else {
@@ -51,4 +51,3 @@ class StyleVM: ListVM<StyleItemVM, StyleService>, DictionaryViewModel {
     }
     
 }
-

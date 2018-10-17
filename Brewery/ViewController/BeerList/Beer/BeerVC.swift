@@ -75,7 +75,7 @@ extension BeerVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
-        if (offset >= 0) {
+        if offset >= 0 {
             heightPhotoIV.constant = initialImageHeight
             var darken = scrollView.contentOffset.y / 300
             if darken < 0.02 { darken = 0.02 }

@@ -57,8 +57,8 @@ extension CALayer {
         let contentLayerName = "layer"
         if let contents = self.contents {
             masksToBounds = false
-            sublayers?.filter{ $0.frame.equalTo(self.bounds) }
-                .forEach{ $0.roundCorners(radius: self.cornerRadius) }
+            sublayers?.filter { $0.frame.equalTo(self.bounds) }
+                .forEach { $0.roundCorners(radius: self.cornerRadius) }
             self.contents = nil
             if let sublayer = sublayers?.first,
                 sublayer.name == contentLayerName {
@@ -77,7 +77,7 @@ extension CALayer {
 }
 
 func += <K, V> (left: inout [K: V], right: [K: V]) {
-    for (k, v) in right {
-        left[k] = v
+    for (key, value) in right {
+        left[key] = value
     }
 }

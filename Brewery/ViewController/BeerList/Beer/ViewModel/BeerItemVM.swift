@@ -24,7 +24,7 @@ class BeerItemVM {
     }
     
     var isOrganic: String {
-        if (beer.isOrganic == "Y") {
+        if beer.isOrganic == "Y" {
             return "Yes"
         }
         return "No"

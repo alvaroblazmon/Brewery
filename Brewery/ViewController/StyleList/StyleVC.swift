@@ -94,10 +94,8 @@ extension StyleVC: ViewModelDelegate {
     }
     
     private func showAlertNotResult() {
-        let alertController = UIAlertController(title: "Alert" , message: "Error connection", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Accept", style: .default) { (action:UIAlertAction) in
-            self.viewModel.reloadData()
-        }
+        let alertController = UIAlertController(title: "Alert", message: "Error connection", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Accept", style: .default) { _ in self.viewModel.reloadData() }
         alertController.addAction(action1)
         
         self.present(alertController, animated: true, completion: nil)

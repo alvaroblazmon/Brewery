@@ -16,18 +16,18 @@ protocol FavoritesStorage {
 
 class Storage {
     
+    enum Key: String {
+        case favorites
+    }
+    
     class Favorites: FavoritesStorage {
-        
-        enum Key: String {
-            case favorites
-        }
         
         let defaults = UserDefaults.standard
         var data: [String]
         
         init() {
             self.data = []
-            if let data = defaults.array(forKey: Key.favorites.rawValue) as? [String] {
+            if let data = defaults.array(forKey: Storage.Key.favorites.rawValue) as? [String] {
                 self.data = data
             }
         }
@@ -38,7 +38,7 @@ class Storage {
             }
             print("llega " + id)
             data.append(id)
-            defaults.set(data, forKey: Key.favorites.rawValue)
+            defaults.set(data, forKey: Storage.Key.favorites.rawValue)
             print("guardado " + id)
         }
         
@@ -48,7 +48,7 @@ class Storage {
             }
             
             data.remove(at: index)
-            defaults.set(data, forKey: Key.favorites.rawValue)
+            defaults.set(data, forKey: Storage.Key.favorites.rawValue)
         }
         
         func isFavorite(favorite id: String) -> Bool {
