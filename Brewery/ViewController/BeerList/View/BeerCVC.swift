@@ -26,8 +26,6 @@ class BeerCVC: UICollectionViewCell {
         }
     }
     
-    weak var favoritesDelegate: FavoritesDelegate?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -61,7 +59,7 @@ class BeerCVC: UICollectionViewCell {
 
     @IBAction func favoriteTap(_ sender: Any) {
         if let itemVM = itemVM {
-            favoritesDelegate?.changeFavorite(favorite: itemVM)
+            itemVM.changeFavorite()
         }
     }
 }

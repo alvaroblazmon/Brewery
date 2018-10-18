@@ -46,7 +46,6 @@ UICollectionViewDataSource {
         }
         cell.itemVM = itemVM
         cell.addShadow()
-        cell.favoritesDelegate = viewModel
         return cell
     }
     

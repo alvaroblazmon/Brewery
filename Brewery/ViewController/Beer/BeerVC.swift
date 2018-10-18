@@ -42,7 +42,7 @@ class BeerVC: UIViewController {
         } else {
             photoIV.image = UIImage(named: "beer")
         }
-        
+        prepareFavorite()
     }
     
     private func prepareFavorite() {
@@ -54,11 +54,7 @@ class BeerVC: UIViewController {
     }
     
     @IBAction func blurViewTap(_ sender: Any) {
-        if let urlImage = URL(string: viewModel.image) {
-            let viewController = BeerImageVC()
-            viewController.urlImage = urlImage
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        viewModel.goPhotoBeer()
     }
     
     @IBAction func exitTap(_ sender: Any) {
@@ -77,13 +73,11 @@ extension BeerVC: UIScrollViewDelegate {
         let offset = scrollView.contentOffset.y
         if offset >= 0 {
             heightPhotoIV.constant = initialImageHeight
-            var darken = scrollView.contentOffset.y / 300
-            if darken < 0.02 { darken = 0.02 }
-            blurView.alpha = darken
+            let darken = scrollView.contentOffset.y / initialImageHeight
+            blurView.backgroundColor = UIColor.black.withAlphaComponent(darken)
         } else {
             heightPhotoIV.constant = initialImageHeight + abs(offset)
-            //Si el alpha es menor a esta cantidad, se deshabilitaría el TAP
-            blurView.alpha = 0.02
+            blurView.backgroundColor = UIColor.clear
         }
     }
     

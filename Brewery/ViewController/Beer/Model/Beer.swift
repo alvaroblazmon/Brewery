@@ -11,7 +11,7 @@ import SwiftyJSON
 struct Beer {
     enum Key: String {
         case id, name, description, isOrganic, abv, ibu
-        case icon, image = "large", labels
+        case icon = "medium", image = "large", labels
     }
     
     let id: String

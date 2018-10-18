@@ -6,9 +6,12 @@
 //  Copyright © 2018 Alvaro Blazquez. All rights reserved.
 //
 
+import Foundation
+
 class BeerItemVM {
     
     weak var parent: FavoritesDelegate?
+    var coordinator: BeerCoordinator?
     let beer: Beer
     
     var id: String {
@@ -53,7 +56,15 @@ class BeerItemVM {
     }
     
     func changeFavorite() {
+        isFavorite = !isFavorite
         parent?.changeFavorite(favorite: self)
+    }
+    
+    func goPhotoBeer() {
+        if let url = URL(string: self.image) {
+            let transition = BeerTransition.goPhotoBeer(url: url)
+            coordinator?.performTransition(transition: transition)
+        }
     }
     
 }

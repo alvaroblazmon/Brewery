@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
-        let mainViewController = UITabBarController()
-        let mainCoordinator = MainCoordinator(tabBarController: mainViewController, window: window)
+        let mainViewController = UINavigationController()
+        let mainCoordinator = MainCoordinator(navigationController: mainViewController, window: window)
         mainCoordinator.start()
         
         return true

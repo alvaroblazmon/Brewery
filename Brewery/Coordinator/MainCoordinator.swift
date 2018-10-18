@@ -14,55 +14,26 @@ class MainCoordinator: CoordinatorProtocol {
         case home, favorites
     }
     
-    typealias NavViewController = UIViewController
+    typealias NavViewController = UINavigationController
     
-    var navigationController: NavViewController?
-    var tabBarController: UITabBarController
+    var navigationController: NavViewController
     var window: UIWindow?
     
-    required init(navigationController: NavViewController) {
+    required init(navigationController: NavViewController, window: UIWindow?) {
         self.navigationController = navigationController
-        self.tabBarController = UITabBarController()
-    }
-    
-    required init(tabBarController: UITabBarController, window: UIWindow?) {
-        self.tabBarController = UITabBarController()
         self.window = window
     }
     
     func start() {
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Brewery.Yellow]
+        navigationController.navigationBar.tintColor = UIColor.Brewery.Yellow
+        navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Brewery.Yellow]
         
-        //tabBarController.tabBar.tintColor = UIColor.Padel.Purple
-        
-        for viewTab in ViewsInTab.allCases {
-            let viewNVC = UINavigationController()
-            viewNVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Yellow")!]
-            viewNVC.navigationBar.tintColor = UIColor(named: "Yellow")
-            viewNVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Yellow")!]
-            
-            var coordinator: CoordinatorProtocol
-            switch viewTab {
-            case ViewsInTab.home:
-                coordinator = StyleCoordinator(navigationController: viewNVC)
-                viewNVC.tabBarItem = UITabBarItem(title: "Liguillas", image: UIImage(named: "slider_products"), tag: 0)
-            case ViewsInTab.favorites:
-                coordinator = StyleCoordinator(navigationController: viewNVC)
-                viewNVC.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "slider_products"), tag: 1)
-            }
-            coordinator.start()
-            if tabBarController.viewControllers == nil {
-                tabBarController.viewControllers = [viewNVC]
-            } else {
-                tabBarController.viewControllers?.append(viewNVC)
-            }
-        }
-        
-        if let navigationController = navigationController {
-            navigationController.present(tabBarController, animated: false, completion: nil)
-        }
+        let coordinator = StyleCoordinator(navigationController: navigationController)
+        coordinator.start()
         
         if let window = window {
-            window.rootViewController = tabBarController
+            window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
     }

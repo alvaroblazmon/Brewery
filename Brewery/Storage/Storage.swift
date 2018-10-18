@@ -36,10 +36,8 @@ class Storage {
             if data.contains(id) {
                 return
             }
-            print("llega " + id)
             data.append(id)
             defaults.set(data, forKey: Storage.Key.favorites.rawValue)
-            print("guardado " + id)
         }
         
         func delete(favorite id: String) {

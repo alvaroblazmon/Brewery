@@ -64,14 +64,13 @@ class BeerListVM: ListVM<BeerItemVM, BeerService>, PaginationViewModel, Favorite
     
     /// Call to coordinator to go to the next screen
     func didSelectItemAt(index: Int) {
-        if let beerItemVM = itemAtIndex(index) {
-            let transition = StyleTransition.goBeerDetails(beerItemVM: beerItemVM)
+        if index < data.count {
+            let transition = StyleTransition.goBeerDetails(index: index, listBeerItemVM: data)
             coordinator.performTransition(transition: transition)
         }
     }
     
     func changeFavorite(favorite: BeerItemVM) {
-        favorite.isFavorite = !favorite.isFavorite
         if favorite.isFavorite {
             favoritesStorage?.save(favorite: favorite.id)
         } else {
