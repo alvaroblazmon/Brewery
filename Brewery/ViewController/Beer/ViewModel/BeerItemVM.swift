@@ -11,7 +11,7 @@ import Foundation
 class BeerItemVM {
     
     weak var parent: FavoritesDelegate?
-    var coordinator: BeerCoordinator?
+    var coordinator: CoordinatorProtocol?
     let beer: Beer
     
     var id: String {
