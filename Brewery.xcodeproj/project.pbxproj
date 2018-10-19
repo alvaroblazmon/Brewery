@@ -188,9 +188,9 @@
 		831CAEB2217657B9003DCE08 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				831CAEB4217657D7003DCE08 /* BeerListVC.xib */,
 				831CAEB9217722AA003DCE08 /* BeerCVC.swift */,
 				831CAEBA217722AA003DCE08 /* BeerCVC.xib */,
+				831CAEB4217657D7003DCE08 /* BeerListVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -367,9 +367,9 @@
 		8384EFC521762EA4003D701D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				831CAEB021765656003DCE08 /* BeerService.swift */,
 				8384EFC821762F53003D701D /* ExtensionMoya.swift */,
 				8384EFDD21763667003D701D /* StyleService.swift */,
-				831CAEB021765656003DCE08 /* BeerService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -377,9 +377,9 @@
 		8384EFC621762EBD003D701D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8384EFD0217630C8003D701D /* CoordinatorProtocol.swift */,
 				8384EFCC21763018003D701D /* ViewModel.swift */,
 				8384EFCE2176303D003D701D /* ViewModelDelegate.swift */,
-				8384EFD0217630C8003D701D /* CoordinatorProtocol.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -387,9 +387,9 @@
 		8384EFC721762EC4003D701D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				83255E04217873DB0035A977 /* Color.swift */,
 				8384EFCA21762F8C003D701D /* Constant.swift */,
 				8384EFD2217630F1003D701D /* Helper.swift */,
-				83255E04217873DB0035A977 /* Color.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -397,10 +397,10 @@
 		8384EFD421763203003D701D /* StyleList */ = {
 			isa = PBXGroup;
 			children = (
+				8384EFE121763C78003D701D /* StyleVC.swift */,
+				8384EFD72176347A003D701D /* Model */,
 				8384EFE521763C7C003D701D /* View */,
 				8384EFDA21763560003D701D /* ViewModel */,
-				8384EFD72176347A003D701D /* Model */,
-				8384EFE121763C78003D701D /* StyleVC.swift */,
 			);
 			path = StyleList;
 			sourceTree = "<group>";
@@ -408,9 +408,9 @@
 		8384EFD521763211003D701D /* BeerList */ = {
 			isa = PBXGroup;
 			children = (
+				831CAEB3217657D7003DCE08 /* BeerListVC.swift */,
 				831CAEB2217657B9003DCE08 /* View */,
 				831CAEAD21765559003DCE08 /* ViewModel */,
-				831CAEB3217657D7003DCE08 /* BeerListVC.swift */,
 			);
 			path = BeerList;
 			sourceTree = "<group>";
@@ -418,12 +418,12 @@
 		8384EFD621763218003D701D /* Beer */ = {
 			isa = PBXGroup;
 			children = (
-				831CAEC121774A5E003DCE08 /* View */,
-				831CAEAA21765475003DCE08 /* ViewModel */,
-				831CAEA721765357003DCE08 /* Model */,
-				831CAEBD21774A59003DCE08 /* BeerVC.swift */,
 				831CAEC221775F8A003DCE08 /* BeerImageVC.swift */,
 				83255E0621787D730035A977 /* BeerPVC.swift */,
+				831CAEBD21774A59003DCE08 /* BeerVC.swift */,
+				831CAEA721765357003DCE08 /* Model */,
+				831CAEC121774A5E003DCE08 /* View */,
+				831CAEAA21765475003DCE08 /* ViewModel */,
 			);
 			path = Beer;
 			sourceTree = "<group>";
@@ -448,9 +448,9 @@
 		8384EFE521763C7C003D701D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8384EFE221763C78003D701D /* StyleVC.xib */,
 				8384EFEA217645B0003D701D /* StyleTVC.swift */,
 				8384EFEB217645B0003D701D /* StyleTVC.xib */,
+				8384EFE221763C78003D701D /* StyleVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
