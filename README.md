@@ -4,63 +4,43 @@
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-One to two paragraph statement about your product and what it does.
-
-![](header.png)
 
 ## Features
 
-- [x] Feature 1
-- [x] Feature 2
-- [x] Feature 3
-- [x] Feature 4
-- [x] Feature 5
+- [x] Obtener una lista de estilos de cerveza y listarlas, al pulsar sobre una de estas categorías se accederá a una vista tipo grid.
+- [x] La vista tipo grid (UICollectionView) contendrá las cervezas del estilo seleccionado seleccionada en el paso anterior. Este grid tendrá un estilo muy similar al que encontrarás en las pantallas de categoría de Lola Market (mínimo de 3 items por fila). Cada item al menos debe contener el nombre de la cerveza y su imagen.
+- [x] Al pulsar sobre uno de los items abrir una vista detalle que muestre de forma similar a los detalles de producto de Lola Market la información de la cerveza. Al menos contendrá la foto, el nombre de la cerveza y una descripción, pero puedes añadir el resto de información interesante que consideres.
+- [x] La aplicación permitirá guardar algunas cervezas como favoritas y estas deben destacar de alguna manera frente a las demás.
+- [x] La aplicación permitirá hacer zoom sobre la imagen de una cerveza en la pantalla detalle.
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.3
+- iOS 11.0+
+- Xcode 10.0
 
 ## Installation
 
-#### CocoaPods
-You can use [CocoaPods](http://cocoapods.org/) to install `YourLibrary` by adding it to your `Podfile`:
+#### Manual
+Puedes bajarte el repositorio en formato zip, descomprimirlo y lanzar el Workspace
 
-```ruby
-platform :ios, '8.0'
-use_frameworks!
-pod 'YourLibrary'
-```
+#### Xcode
+Puedes clonar desde el Xcode el repositorio. 
 
-To get the full benefits import `YourLibrary` wherever you import UIKit
+## Architecture
 
-``` swift
-import UIKit
-import YourLibrary
-```
-#### Carthage
-Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/YourLibrary.framework` to an iOS project.
+Se ha usado una arquitectura MVVM-C. El motivo elegido para elegir esta arquitectura ha sido por su fácil desacomplamiento y posibilidad de realizar test de todos sus componentes, además se ha usado los Coordinators para enrutar la distintas transicciones de la aplicación.
 
-```
-github "yourUsername/yourlibrary"
-```
-#### Manually
-1. Download and drop ```YourLibrary.swift``` in your project.  
-2. Congratulations!  
+## Library
 
-## Usage example
+'Kingfisher', '~> 4.0'
+'Moya', '~> 11.0'
+'SwiftyJSON', '~> 4.0'
 
-```swift
-import EZSwiftExtensions
-ez.detectScreenShot { () -> () in
-    print("User took a screen shot")
-}
-```
+## Tests
+
+No se ha realizado todos los tests posibles de la aplicación y no se ha llegado al 100% en muchas de las clases, pero se puede ver un ejemplo bastante claro dónde se hacen test en gran parte de los componentes de la arquitectura en la clase 'BeerListTests.swift'
 
 ## Contribute
 
@@ -74,7 +54,7 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 
 [https://github.com/yourname/github-link](https://github.com/dbader/)
 
-[swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
+[swift-image]:https://img.shields.io/badge/swift-4.2-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
