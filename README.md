@@ -33,8 +33,13 @@ Se ha usado una arquitectura MVVM-C. El motivo elegido para elegir esta arquitec
 
 ## Library
 
-[Kingfisher link](https://www.google.com)
-[SwiftLint link] (https://github.com/realm/SwiftLint)
+[SwiftLint link](https://github.com/realm/SwiftLint)
+
+[Kingfisher link](https://github.com/onevcat/Kingfisher)
+
+[Moya link](https://github.com/Moya/Moya)
+
+[SwiftyJSON link](https://github.com/SwiftyJSON/SwiftyJSON)
 
 ## Tests
 
