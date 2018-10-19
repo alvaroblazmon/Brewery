@@ -13,7 +13,9 @@ class MoyaProviderConnection<Target: TargetType>: MoyaProvider<Target> {
     
     let reachabilityManager = NetworkReachabilityManager()
     
-    init() {
+    init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
+         stubClosure: @escaping StubClosure = MoyaProvider.neverStub) {
+        
         let manager = Manager()
         
         let plugins: [PluginType] = [NetworkLoggerPlugin(verbose: true),
@@ -25,7 +27,7 @@ class MoyaProviderConnection<Target: TargetType>: MoyaProvider<Target> {
                                      })
         ]
         
-        super.init(manager: manager, plugins: plugins)
+        super.init(endpointClosure: endpointClosure, stubClosure: stubClosure, manager: manager, plugins: plugins)
     }
 
 }

@@ -42,7 +42,6 @@ class StyleVM: ListVM<StyleItemVM, StyleService>, DictionaryViewModel {
         }
     }
     
-    /// Call to coordinator to go to the next screen
     func didSelectItemAt(index: IndexPath) {
         if let styleItemVM = itemAtIndex(index) {
             let transition = StyleTransition.goBeerList(styleItemVM: styleItemVM)

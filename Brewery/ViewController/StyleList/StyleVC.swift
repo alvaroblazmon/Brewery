@@ -25,7 +25,6 @@ class StyleVC: UIViewController {
         }
     }
     
-    /// Register the nibs cell of Filters in the tableView
     private func prepareTableView() {
         let nib = UINib(nibName: StyleTVC.XibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: StyleTVC.ReuseIdentifier)
@@ -36,12 +35,10 @@ class StyleVC: UIViewController {
 
 extension StyleVC: UITableViewDataSource, UITableViewDelegate {
     
-    /// - returns: Number Of Sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
     
-    /// - returns: Numbers of products in viewmodel
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfElementsInSection(section)
     }
@@ -57,7 +54,6 @@ extension StyleVC: UITableViewDataSource, UITableViewDelegate {
         return viewModel.sectionIndexTitles()
     }
     
-    /// - returns: A `SearchProductTVC` cell with the country in the row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StyleTVC.ReuseIdentifier, for: indexPath) as? StyleTVC  else {
@@ -70,7 +66,6 @@ extension StyleVC: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    /// Call didSelectItemAt of the viewModel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectItemAt(index: indexPath)
     }

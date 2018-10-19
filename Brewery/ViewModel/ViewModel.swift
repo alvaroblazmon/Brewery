@@ -39,7 +39,7 @@ protocol PaginationViewModel {
 }
 
 extension PaginationViewModel {
-    /// Next page of the products
+    
     mutating func loadNextPage(index: IndexPath) {
         if currentPage >= totalPages {
             return
@@ -88,31 +88,29 @@ enum FinishType {
 }
 
 protocol ParentViewModel {
-    /// Finish
+    
     func finish(_ finishType: FinishType, data: Any?)
 }
 
 protocol DictionaryViewModel {
     associatedtype Data
     var data: [Data] {get set}
-    /// Count of the data
     var count: Int {get}
-    /// - return: Item at Index in data
+    
     func itemAtIndex(_ index: Int) -> Data?
-    /// Minimum elements to show the data as dictionary
+    
     var minElementToShowDictionary: Int {get set}
-    /// Dictionary of data with the fists character as key
+    
     var dictionaryItems: [Character: [Data]] {get}
-    /// Number of sections of data
+    
     var numberOfSections: Int {get}
-    /// - return: Section At Index. If data are NOT shown as Dictionary then return nil
+    
     func sectionAtIndex(_ index: Int) -> Character?
-    /// - return: Number of elements in section. If data are NOT shown as Dictionary then return total number of items
+    
     func numberOfElementsInSection(_ index: Int) -> Int
-    /// - return: Section Index Titles. If data are NOT shown as Dictionary return a empty array
+    
     func sectionIndexTitles() -> [String]
-    /// Use when the data are shown as Dictionary
-    /// - return: Item at index
+    
     func itemAtIndex(_ index: IndexPath) -> Data?
 }
 

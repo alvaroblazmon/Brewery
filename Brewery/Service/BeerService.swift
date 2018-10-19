@@ -39,7 +39,11 @@ extension BeerService: TargetType {
     var sampleData: Data {
         switch self {
         case .list:
-            return Data()
+            let json = "{\"data\": [" +
+            "{\"id\": \"1\",\"name\": \"Beer\",\"description\": \"descripcion\",\"isOrganic\": \"Y\"," +
+            "\"abv\": \"10\",\"ibu\": \"2\", \"labels\": {\"medium\": \"icon\",\"large\": \"image\"}}]}"
+            return json.utf8Encoded
+
         }
     }
     var headers: [String: String]? {

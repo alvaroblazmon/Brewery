@@ -32,6 +32,10 @@ extension String {
         
         return char
     }
+    
+    var utf8Encoded: Data {
+        return data(using: .utf8)!
+    }
 }
 
 extension CALayer {
