@@ -8,11 +8,7 @@
 
 import Moya
 
-enum StyleService {
-    case get
-}
-
-extension StyleService: TargetType {
+extension StyleAction: TargetType {
     
     var baseURL: URL { return URL(string: Constant.URLAPI)! }
     var path: String {

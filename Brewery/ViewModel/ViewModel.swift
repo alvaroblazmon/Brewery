@@ -9,15 +9,15 @@
 import Moya
 
 protocol ViewModel: class {
-    associatedtype ApiService
+    associatedtype Repository
     associatedtype ViewDelegate
     associatedtype Coordinator
     
-    var apiService: ApiService {get set}
+    var repository: Repository {get set}
     var viewDelegate: ViewDelegate? {get set}
     var coordinator: Coordinator {get set}
     
-    init(apiService: ApiService, viewDelegate: ViewDelegate, coordinator: Coordinator)
+    init(repository: Repository, viewDelegate: ViewDelegate, coordinator: Coordinator)
 }
 
 protocol ListViewModel: ViewModel {
@@ -52,19 +52,18 @@ extension PaginationViewModel {
     }
 }
 
-class ListVM<T, Z: TargetType>: ListViewModel {
+class ListVM<T>: ListViewModel {
     typealias Data = T
-    typealias ApiService = MoyaProviderConnection<Z>
     typealias ViewDelegate = ViewModelDelegate
     typealias Coordinator = CoordinatorProtocol
     
-    internal var apiService: ApiService
+    internal var repository: Repository
     internal weak var viewDelegate: ViewDelegate?
     internal var coordinator: Coordinator
     internal var data: [Data]
     
-    required init(apiService: ApiService, viewDelegate: ViewDelegate, coordinator: Coordinator) {
-        self.apiService = apiService
+    required init(repository: Repository, viewDelegate: ViewDelegate, coordinator: Coordinator) {
+        self.repository = repository
         self.viewDelegate = viewDelegate
         self.coordinator = coordinator
         self.data = [Data]()

@@ -7,13 +7,12 @@
 //
 
 import SwiftyJSON
-import Moya
 
 protocol FavoritesDelegate: class {
     func changeFavorite(favorite: BeerItemVM)
 }
 
-class BeerListVM: ListVM<BeerItemVM, BeerService>, PaginationViewModel, FavoritesDelegate {
+class BeerListVM: ListVM<BeerItemVM>, PaginationViewModel, FavoritesDelegate {
     var currentPage: Int = 1
     var totalPages: Int = 0
     // En la documentación de Brewery indica que el total de Items de cada página es 50
@@ -26,20 +25,23 @@ class BeerListVM: ListVM<BeerItemVM, BeerService>, PaginationViewModel, Favorite
         return styleItemVM.name
     }
     
+    var beerRepository: BeerRepositoryProtocol? {
+        return repository as? BeerRepositoryProtocol
+    }
+    
     func reloadData(page: Int = 1) {
         guard let viewDelegate = self.viewDelegate else {
             fatalError("ViewModel without view delegate")
         }
         if page == 1 {
-            viewDelegate.render(state: .loading)
+            viewDelegate.render(state: .loading(Process.Main))
         }
         
-        apiService.request(.list(styleItemVM: styleItemVM, page: page)) { result in
+        beerRepository?.request(.list(styleItemVM: styleItemVM, page: page)) { result in
             switch result {
-            case let .success(moyaResponse):
+            case let .success(response):
                 do {
-                    _ = try moyaResponse.filterSuccessfulStatusCodes()
-                    if let json = try JSON(data: moyaResponse.data).dictionary,
+                    if let json = try JSON(data: response).dictionary,
                         let data = json["data"] {
                         
                         self.data.append(contentsOf: data.arrayValue.map {
@@ -54,10 +56,10 @@ class BeerListVM: ListVM<BeerItemVM, BeerService>, PaginationViewModel, Favorite
                     
                     viewDelegate.render(state: .loaded(Process.Main))
                 } catch {
-                    viewDelegate.render(state: .error(.connectionError))
+                    viewDelegate.render(state: .error(Process.Main))
                 }
             case .failure:
-                viewDelegate.render(state: .error(.connectionError))
+                viewDelegate.render(state: .error(Process.Main))
             }
         }
     }

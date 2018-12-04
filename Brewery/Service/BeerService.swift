@@ -8,11 +8,7 @@
 
 import Moya
 
-enum BeerService {
-    case list(styleItemVM: StyleItemVM, page: Int)
-}
-
-extension BeerService: TargetType {
+extension BeerAction: TargetType {
     
     var baseURL: URL { return URL(string: Constant.URLAPI)! }
     var path: String {

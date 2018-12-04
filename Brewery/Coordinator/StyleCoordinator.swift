@@ -24,7 +24,7 @@ class StyleCoordinator: CoordinatorProtocol {
     
     func start() {
         let styleVC = StyleVC()
-        let viewModel = StyleVM(apiService: MoyaProviderConnection<StyleService>(), viewDelegate: styleVC, coordinator: self)
+        let viewModel = StyleVM(repository: StyleRepository(), viewDelegate: styleVC, coordinator: self)
         styleVC.viewModel = viewModel
         
         navigationController.setViewControllers([styleVC], animated: false)
@@ -36,7 +36,7 @@ class StyleCoordinator: CoordinatorProtocol {
                 
             case .goBeerList(let styleItemVM):
                 let viewController = BeerListVC()
-                let viewModel = BeerListVM(apiService: MoyaProviderConnection<BeerService>(), viewDelegate: viewController, coordinator: self)
+                let viewModel = BeerListVM(repository: BeerRepository(), viewDelegate: viewController, coordinator: self)
                 viewModel.styleItemVM = styleItemVM
                 viewModel.favoritesStorage = Storage.Favorites.init()
                 viewController.viewModel = viewModel

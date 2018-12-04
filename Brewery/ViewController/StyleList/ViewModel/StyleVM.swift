@@ -9,23 +9,26 @@
 import SwiftyJSON
 import Moya
 
-class StyleVM: ListVM<StyleItemVM, StyleService>, DictionaryViewModel {
+class StyleVM: ListVM<StyleItemVM>, DictionaryViewModel {
     
     var minElementToShowDictionary: Int = 15
     var dictionaryItems: [Character: [StyleItemVM]] = [:]
+    
+    var styleRepository: StyleRepositoryProtocol? {
+        return repository as? StyleRepositoryProtocol
+    }
     
     func reloadData() {
         guard let viewDelegate = self.viewDelegate else {
             fatalError("ViewModel without view delegate")
         }
-        viewDelegate.render(state: .loading)
+        viewDelegate.render(state: .loading(Process.Main))
         
-        apiService.request(.get) { result in
+        styleRepository?.request(.get) { result in
             switch result {
-            case let .success(moyaResponse):
+            case let .success(response):
                 do {
-                    _ = try moyaResponse.filterSuccessfulStatusCodes()
-                    if let json = try JSON(data: moyaResponse.data).dictionary,
+                    if let json = try JSON(data: response).dictionary,
                         let data = json["data"] {
                             self.data = data.arrayValue.map { StyleItemVM(Style(json: $0)) }
                             self.dictionaryItems = Dictionary(grouping: self.data,
@@ -34,10 +37,10 @@ class StyleVM: ListVM<StyleItemVM, StyleService>, DictionaryViewModel {
                     
                     viewDelegate.render(state: .loaded(Process.Main))
                 } catch {
-                    viewDelegate.render(state: .error(.connectionError))
+                    viewDelegate.render(state: .error(Process.Main))
                 }
             case .failure:
-                viewDelegate.render(state: .error(.connectionError))
+                viewDelegate.render(state: .error(Process.Main))
             }
         }
     }

@@ -29,6 +29,10 @@
 		83255E252178DB940035A977 /* BeerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83255E242178DB940035A977 /* BeerTests.swift */; };
 		83255E282178DDFF0035A977 /* BeerItemVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83255E272178DDFF0035A977 /* BeerItemVMTests.swift */; };
 		83255E2A2178E4F70035A977 /* BeerPVCVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83255E292178E4F70035A977 /* BeerPVCVMTests.swift */; };
+		8327751221B679A0006A6E22 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327751121B679A0006A6E22 /* Repository.swift */; };
+		8327751421B67B96006A6E22 /* BeerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327751321B67B96006A6E22 /* BeerRepository.swift */; };
+		8327751621B68CBB006A6E22 /* StyleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327751521B68CBB006A6E22 /* StyleRepository.swift */; };
+		8327751821B6EE6D006A6E22 /* MoyaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327751721B6EE6D006A6E22 /* MoyaRepository.swift */; };
 		83550E092179C16C00802534 /* BeerListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550E082179C16C00802534 /* BeerListTests.swift */; };
 		8384EFA321762B2E003D701D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8384EFA221762B2E003D701D /* AppDelegate.swift */; };
 		8384EFAA21762B2F003D701D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8384EFA921762B2F003D701D /* Assets.xcassets */; };
@@ -90,6 +94,10 @@
 		83255E242178DB940035A977 /* BeerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerTests.swift; sourceTree = "<group>"; };
 		83255E272178DDFF0035A977 /* BeerItemVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerItemVMTests.swift; sourceTree = "<group>"; };
 		83255E292178E4F70035A977 /* BeerPVCVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerPVCVMTests.swift; sourceTree = "<group>"; };
+		8327751121B679A0006A6E22 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8327751321B67B96006A6E22 /* BeerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerRepository.swift; sourceTree = "<group>"; };
+		8327751521B68CBB006A6E22 /* StyleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleRepository.swift; sourceTree = "<group>"; };
+		8327751721B6EE6D006A6E22 /* MoyaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaRepository.swift; sourceTree = "<group>"; };
 		83550E082179C16C00802534 /* BeerListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListTests.swift; sourceTree = "<group>"; };
 		8384EF9F21762B2E003D701D /* Brewery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brewery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8384EFA221762B2E003D701D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +289,17 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		8327751021B6798D006A6E22 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				8327751121B679A0006A6E22 /* Repository.swift */,
+				8327751321B67B96006A6E22 /* BeerRepository.swift */,
+				8327751521B68CBB006A6E22 /* StyleRepository.swift */,
+				8327751721B6EE6D006A6E22 /* MoyaRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		83550E072179C14500802534 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +331,7 @@
 		8384EFA121762B2E003D701D /* Brewery */ = {
 			isa = PBXGroup;
 			children = (
+				8327751021B6798D006A6E22 /* Repository */,
 				8384EFC421762E98003D701D /* Coordinator */,
 				8384EFC221762E4E003D701D /* Mandatory */,
 				8384EFC521762EA4003D701D /* Service */,
@@ -653,9 +673,12 @@
 				8384EFE921763DDA003D701D /* StyleCoordinator.swift in Sources */,
 				831CAEA921765365003DCE08 /* Beer.swift in Sources */,
 				83255E0921787E1A0035A977 /* BeerPVCVM.swift in Sources */,
+				8327751821B6EE6D006A6E22 /* MoyaRepository.swift in Sources */,
 				8384EFCD21763018003D701D /* ViewModel.swift in Sources */,
 				8384EFCF2176303D003D701D /* ViewModelDelegate.swift in Sources */,
+				8327751221B679A0006A6E22 /* Repository.swift in Sources */,
 				831CAEAF2176556B003DCE08 /* BeerListVM.swift in Sources */,
+				8327751421B67B96006A6E22 /* BeerRepository.swift in Sources */,
 				8384EFDC21763573003D701D /* StyleItemVM.swift in Sources */,
 				8384EFE021763A7A003D701D /* StyleVM.swift in Sources */,
 				831CAEC8217784F8003DCE08 /* Storage.swift in Sources */,
@@ -664,6 +687,7 @@
 				83255E0721787D730035A977 /* BeerPVC.swift in Sources */,
 				831CAEAC21765492003DCE08 /* BeerItemVM.swift in Sources */,
 				8384EFEC217645B0003D701D /* StyleTVC.swift in Sources */,
+				8327751621B68CBB006A6E22 /* StyleRepository.swift in Sources */,
 				8384EFC921762F53003D701D /* ExtensionMoya.swift in Sources */,
 				831CAEC421775F8A003DCE08 /* BeerImageVC.swift in Sources */,
 				831CAEB821765AC0003DCE08 /* BeerCoordinator.swift in Sources */,
