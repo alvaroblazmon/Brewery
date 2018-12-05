@@ -12,7 +12,7 @@ protocol FavoritesDelegate: class {
     func changeFavorite(favorite: BeerItemVM)
 }
 
-class BeerListVM: ListVM<BeerItemVM>, PaginationViewModel, FavoritesDelegate {
+class BeerListVM: ListVM<BeerItemVM, BeerRepositoryProtocol>, PaginationViewModel, FavoritesDelegate {
     var currentPage: Int = 1
     var totalPages: Int = 0
     // En la documentación de Brewery indica que el total de Items de cada página es 50
@@ -25,10 +25,6 @@ class BeerListVM: ListVM<BeerItemVM>, PaginationViewModel, FavoritesDelegate {
         return styleItemVM.name
     }
     
-    var beerRepository: BeerRepositoryProtocol? {
-        return repository as? BeerRepositoryProtocol
-    }
-    
     func reloadData(page: Int = 1) {
         guard let viewDelegate = self.viewDelegate else {
             fatalError("ViewModel without view delegate")
@@ -37,7 +33,7 @@ class BeerListVM: ListVM<BeerItemVM>, PaginationViewModel, FavoritesDelegate {
             viewDelegate.render(state: .loading(Process.Main))
         }
         
-        beerRepository?.request(.list(styleItemVM: styleItemVM, page: page)) { result in
+        repository.request(.list(styleItemVM: styleItemVM, page: page)) { result in
             switch result {
             case let .success(response):
                 do {

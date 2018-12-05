@@ -35,4 +35,3 @@ extension Result where T == Moya.Response, Error == MoyaError {
         }
     }
 }
-

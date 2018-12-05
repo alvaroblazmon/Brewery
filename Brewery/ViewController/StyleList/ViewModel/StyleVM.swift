@@ -9,14 +9,10 @@
 import SwiftyJSON
 import Moya
 
-class StyleVM: ListVM<StyleItemVM>, DictionaryViewModel {
+class StyleVM: ListVM<StyleItemVM, StyleRepositoryProtocol>, DictionaryViewModel {
     
     var minElementToShowDictionary: Int = 15
     var dictionaryItems: [Character: [StyleItemVM]] = [:]
-    
-    var styleRepository: StyleRepositoryProtocol? {
-        return repository as? StyleRepositoryProtocol
-    }
     
     func reloadData() {
         guard let viewDelegate = self.viewDelegate else {
@@ -24,7 +20,7 @@ class StyleVM: ListVM<StyleItemVM>, DictionaryViewModel {
         }
         viewDelegate.render(state: .loading(Process.Main))
         
-        styleRepository?.request(.get) { result in
+        repository.request(.get) { result in
             switch result {
             case let .success(response):
                 do {

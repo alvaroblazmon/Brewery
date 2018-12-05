@@ -21,8 +21,8 @@ protocol StyleRepositoryProtocol: Repository {
 class StyleRepository: MoyaRepository<StyleAction>, StyleRepositoryProtocol {
     func request(_ action: Action, completion: @escaping Completion) -> Cancellable {
         let cancel = SimpleCancellable()
-        apiService.request(action) { result
-            in self.reduce(result: result, cancel: cancel, completion: completion)
+        apiService.request(action) { result in
+            self.reduce(result: result, cancel: cancel, completion: completion)
         }
         return cancel
     }
