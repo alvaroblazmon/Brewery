@@ -52,10 +52,10 @@ extension PaginationViewModel {
     }
 }
 
-class ListVM<T, Z>: ListViewModel {
+class ListVM<T, Z, Y>: ListViewModel {
     typealias Data = T
     typealias ViewDelegate = ViewModelDelegate
-    typealias Coordinator = CoordinatorProtocol
+    typealias Coordinator = Y
     typealias Repository = Z
     
     internal var repository: Repository

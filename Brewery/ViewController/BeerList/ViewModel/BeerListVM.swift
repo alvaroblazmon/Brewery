@@ -12,7 +12,7 @@ protocol FavoritesDelegate: class {
     func changeFavorite(favorite: BeerItemVM)
 }
 
-class BeerListVM: ListVM<BeerItemVM, BeerRepositoryProtocol>, PaginationViewModel, FavoritesDelegate {
+class BeerListVM: ListVM<BeerItemVM, BeerRepositoryProtocol, StyleCoordinatorProtocol>, PaginationViewModel, FavoritesDelegate {
     var currentPage: Int = 1
     var totalPages: Int = 0
     // En la documentación de Brewery indica que el total de Items de cada página es 50

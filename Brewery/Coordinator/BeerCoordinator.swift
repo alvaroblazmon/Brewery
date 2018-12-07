@@ -13,7 +13,11 @@ enum BeerTransition {
     case goPhotoBeer(url: URL)
 }
 
-class BeerCoordinator: CoordinatorProtocol {
+protocol BeerCoordinatorProtocol: CoordinatorProtocol {
+    func performTransition(transition: BeerTransition)
+}
+
+class BeerCoordinator: BeerCoordinatorProtocol {
     
     typealias NavViewController = UINavigationController
     var navigationController: NavViewController
@@ -33,14 +37,12 @@ class BeerCoordinator: CoordinatorProtocol {
         navigationController.setViewControllers([viewController], animated: false)
     }
     
-    func performTransition(transition: Any) {
-        if let trasition = transition as? BeerTransition {
-            switch trasition {
-            case .goPhotoBeer(let url):
-                let viewController = BeerImageVC()
-                viewController.urlImage = url
-                navigationController.pushViewController(viewController, animated: true)
-            }
+    func performTransition(transition: BeerTransition) {
+        switch transition {
+        case .goPhotoBeer(let url):
+            let viewController = BeerImageVC()
+            viewController.urlImage = url
+            navigationController.pushViewController(viewController, animated: true)
         }
     }
     

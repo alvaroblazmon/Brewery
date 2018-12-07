@@ -9,7 +9,7 @@
 import SwiftyJSON
 import Moya
 
-class StyleVM: ListVM<StyleItemVM, StyleRepositoryProtocol>, DictionaryViewModel {
+class StyleVM: ListVM<StyleItemVM, StyleRepositoryProtocol, StyleCoordinatorProtocol>, DictionaryViewModel {
     
     var minElementToShowDictionary: Int = 15
     var dictionaryItems: [Character: [StyleItemVM]] = [:]
@@ -43,8 +43,7 @@ class StyleVM: ListVM<StyleItemVM, StyleRepositoryProtocol>, DictionaryViewModel
     
     func didSelectItemAt(index: IndexPath) {
         if let styleItemVM = itemAtIndex(index) {
-            let transition = StyleTransition.goBeerList(styleItemVM: styleItemVM)
-            coordinator.performTransition(transition: transition)
+            coordinator.performTransition(transition: .goBeerList(styleItemVM: styleItemVM))
         }
     }
     

@@ -12,9 +12,9 @@ class BeerPVCVM {
     
     let data: [BeerItemVM]
     let index: Int
-    let coordinator: CoordinatorProtocol
+    let coordinator: BeerCoordinatorProtocol
     
-    init(index: Int, data: [BeerItemVM], coordinator: CoordinatorProtocol) {
+    init(index: Int, data: [BeerItemVM], coordinator: BeerCoordinatorProtocol) {
         self.data = data
         self.index = index
         self.coordinator = coordinator

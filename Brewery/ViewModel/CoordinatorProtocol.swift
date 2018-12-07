@@ -8,5 +8,4 @@
 
 protocol CoordinatorProtocol: class {
     func start()
-    func performTransition(transition: Any)
 }

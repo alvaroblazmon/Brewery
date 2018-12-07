@@ -38,7 +38,4 @@ class MainCoordinator: CoordinatorProtocol {
         }
     }
     
-    func performTransition(transition: Any) {
-    }
-    
 }

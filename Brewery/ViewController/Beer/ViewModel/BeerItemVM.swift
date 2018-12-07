@@ -11,7 +11,7 @@ import Foundation
 class BeerItemVM {
     
     weak var parent: FavoritesDelegate?
-    var coordinator: CoordinatorProtocol?
+    var coordinator: BeerCoordinatorProtocol?
     let beer: Beer
     
     var id: String {
@@ -62,8 +62,7 @@ class BeerItemVM {
     
     func goPhotoBeer() {
         if let url = URL(string: self.image) {
-            let transition = BeerTransition.goPhotoBeer(url: url)
-            coordinator?.performTransition(transition: transition)
+            coordinator?.performTransition(transition: .goPhotoBeer(url: url))
         }
     }
     
