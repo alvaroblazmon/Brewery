@@ -25,7 +25,7 @@ class SimpleCancellable: Cancellable {
 }
 
 enum RepositoryError: Error {
-    case simpleError
+    case simpleError, badJSON
 }
 
 protocol Repository {

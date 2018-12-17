@@ -8,6 +8,10 @@
 
 import Moya
 
+enum StyleAction {
+    case get
+}
+
 extension StyleAction: TargetType {
     
     var baseURL: URL { return URL(string: Constant.URLAPI)! }

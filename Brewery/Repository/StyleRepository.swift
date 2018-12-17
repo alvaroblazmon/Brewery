@@ -7,23 +7,40 @@
 //
 
 import Foundation
-
-enum StyleAction {
-    case get
-}
+import Result
+import SwiftyJSON
 
 protocol StyleRepositoryProtocol: Repository {
-    typealias Action = StyleAction
+    typealias ResultGet = Result<[Style]?, RepositoryError>
+    typealias CompletionGet = (_ result: ResultGet) -> Void
+    
     @discardableResult
-    func request(_ action: Action, completion: @escaping Completion) -> Cancellable
+    func get(completion: @escaping CompletionGet) -> Cancellable
 }
 
 class StyleRepository: MoyaRepository<StyleAction>, StyleRepositoryProtocol {
-    func request(_ action: Action, completion: @escaping Completion) -> Cancellable {
-        let cancel = SimpleCancellable()
-        apiService.request(action) { result in
-            self.reduce(result: result, cancel: cancel, completion: completion)
+    
+    func get(completion: @escaping CompletionGet) -> Cancellable {
+        return request(.get) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    if let json = try JSON(data: response).dictionary,
+                        let data = json["data"] {
+                        
+                        let style = data.arrayValue.map { Style(json: $0) }
+                        completion(.success(style))
+                        
+                    } else {
+                        completion(.success(nil))
+                    }
+                } catch {
+                    completion(.failure(.badJSON))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
-        return cancel
     }
+    
 }

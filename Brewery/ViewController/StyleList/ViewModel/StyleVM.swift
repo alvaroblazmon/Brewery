@@ -20,21 +20,15 @@ class StyleVM: ListVM<StyleItemVM, StyleRepositoryProtocol, StyleCoordinatorProt
         }
         viewDelegate.render(state: .loading(Process.Main))
         
-        repository.request(.get) { result in
+        repository.get { result in
             switch result {
             case let .success(response):
-                do {
-                    if let json = try JSON(data: response).dictionary,
-                        let data = json["data"] {
-                            self.data = data.arrayValue.map { StyleItemVM(Style(json: $0)) }
-                            self.dictionaryItems = Dictionary(grouping: self.data,
-                                                              by: { $0.name.formattedFirstChar })
-                    }
-                    
-                    viewDelegate.render(state: .loaded(Process.Main))
-                } catch {
-                    viewDelegate.render(state: .error(Process.Main))
+                if let response = response {
+                    self.data = response.map { StyleItemVM($0) }
+                    self.dictionaryItems = Dictionary(grouping: self.data,
+                                                      by: { $0.name.formattedFirstChar })
                 }
+                viewDelegate.render(state: .loaded(Process.Main))
             case .failure:
                 viewDelegate.render(state: .error(Process.Main))
             }

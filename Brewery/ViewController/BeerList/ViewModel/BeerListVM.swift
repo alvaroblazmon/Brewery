@@ -6,8 +6,6 @@
 //  Copyright © 2018 Alvaro Blazquez. All rights reserved.
 //
 
-import SwiftyJSON
-
 protocol FavoritesDelegate: class {
     func changeFavorite(favorite: BeerItemVM)
 }
@@ -33,30 +31,24 @@ class BeerListVM: ListVM<BeerItemVM, BeerRepositoryProtocol, StyleCoordinatorPro
             viewDelegate.render(state: .loading(Process.Main))
         }
         
-        repository.request(.list(styleItemVM: styleItemVM, page: page)) { result in
+        repository.list(styleItemVM: styleItemVM, page: page) { result in
             switch result {
             case let .success(response):
-                do {
-                    if let json = try JSON(data: response).dictionary,
-                        let data = json["data"] {
-                        
-                        self.data.append(contentsOf: data.arrayValue.map {
-                            let beerItemVM = BeerItemVM(Beer(json: $0))
-                            beerItemVM.isFavorite = self.favoritesStorage?.isFavorite(favorite: beerItemVM.id) ?? false
-                            beerItemVM.parent = self
-                            return beerItemVM
-                        })
-                        self.totalPages = json["numberOfPages"]?.intValue ?? 0
-                        
-                    }
-                    
-                    viewDelegate.render(state: .loaded(Process.Main))
-                } catch {
-                    viewDelegate.render(state: .error(Process.Main))
+                if let response = response {
+                    self.data.append(contentsOf: response.beers.map {
+                        let beerItemVM = BeerItemVM($0)
+                        beerItemVM.isFavorite = self.favoritesStorage?.isFavorite(favorite: beerItemVM.id) ?? false
+                        beerItemVM.parent = self
+                        return beerItemVM
+                    })
+                    self.totalPages = response.totalPages
                 }
+                
+                viewDelegate.render(state: .loaded(Process.Main))
             case .failure:
                 viewDelegate.render(state: .error(Process.Main))
             }
+            
         }
     }
     
